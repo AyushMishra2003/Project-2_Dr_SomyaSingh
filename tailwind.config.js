@@ -9,6 +9,10 @@ export default {
       animation: {
         'spin-slow': 'spin 100s linear infinite', // Spin slowly
       },
+      rotate: {
+        30: '30deg',
+        60: '60deg',
+      },
     },
   },
   plugins: [],

@@ -5,7 +5,7 @@
 body {
     display: flex;
     flex-direction: column;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Poppins", sans-serif;
 
     overflow-x: hidden;
   }
@@ -14,15 +14,35 @@ body {
     font-weight: 900;
     line-height: 1.066;
     font-family: 'El Messiri', sans-serif;
-    color: #374151;
+    color:  #040D43;
     /* Responsive font-size */
     font-size: 1.5rem; /* Default for smaller screens */
    
   }
+/* styles.css */
+.rotate-x-60 {
+  transform: rotateX(60deg); /* Change this value to rotate by a different angle */
+}
+
+.rotate-x-70 {
+  transform: rotateX(70deg); /* Change this value to rotate by a different angle */
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+  
   
   h2 {
     font-family: 'El Messiri', sans-serif;
-    color: #1A76D1;
+    color: #3597c8;
     font-weight: 600;
     font-size: 1rem; /* Default for smaller screens */
   }
@@ -51,20 +71,20 @@ body {
   
   @media (min-width: 1024px) {
     h1 {
-      font-size: 2rem; /* Larger tablets and desktops */
+      font-size: 2.5rem; /* Larger tablets and desktops */
     }
     h2 {
-      font-size: 2rem;
+      font-size: 1.8rem;
 
     }
   }
   
   @media (min-width: 1280px) {
     h1 {
-      font-size: 2.5rem; /* Laptops and desktops */
+      font-size: 3rem; /* Laptops and desktops */
     }
     h2 {
-      font-size: 1.4rem;
+      font-size: 2rem;
     }
   }
   
@@ -434,6 +454,11 @@ button {
     transform: rotate(225deg);
 }
 
+.parent-container {
+  perspective: 1000px; /* Adjust as necessary */
+}
+
+
 .dot-spinner__dot:nth-child(6)::before {
     animation-delay: calc(var(--uib-speed) * -0.375);
 }
@@ -467,3 +492,67 @@ button {
         opacity: 1;
     }
 }
+
+
+
+/* Add this in your global CSS file or Tailwind config */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Apply the animation */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+
+
+.heartbeat-pattern {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px; /* Adjust height as needed */
+  background: url('../assets/New_Pattern/pname.jpg') repeat-x; /* Adjust the path */
+  background-size: contain;
+  opacity: 0.8; /* Adjust opacity for effect */
+  pointer-events: none; /* Ignore mouse events */
+  z-index: -1; /* Ensures it stays behind other elements */
+  /* Uncomment below line for testing */
+  /* background-color: rgba(255, 0, 0, 0.3); */ /* Temporary red background for visibility */
+}
+
+/* Add back the animation if you want it moving */
+@keyframes move {
+  0% {
+    transform: translateX(-100%); /* Start off-screen left */
+  }
+  100% {
+    transform: translateX(100%); /* End off-screen right */
+  }
+}
+
+
+
+/* Add this in your CSS file */
+.rotate-x-60 {
+  transform: rotateX(60deg);
+}
+
+.rotate-x-70 {
+  transform: rotateX(70deg);
+}
+
+@keyframes float {
+  0% { transform: translateY(0) rotateX(60deg); }
+  50% { transform: translateY(-10px) rotateX(60deg); }
+  100% { transform: translateY(0) rotateX(60deg); }
+}
+
+
+

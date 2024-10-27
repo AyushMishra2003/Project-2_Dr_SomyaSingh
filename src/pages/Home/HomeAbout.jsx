@@ -4,8 +4,9 @@ import 'aos/dist/aos.css';
 import p1 from '../../assets/New_Pattern/home_bg.jpg'; // Background image
 import image1 from '../../assets/dr_somya.jpeg'; // Doctor's image
 import { Link } from 'react-router-dom';
-import { FaUserMd, FaClock, FaMapMarkerAlt } from 'react-icons/fa'; // Imported icons
+import { FaUserMd, FaClock, FaMapMarkerAlt, FaCheckCircle } from 'react-icons/fa'; // Imported icons
 import textbg from '../../assets/New_Pattern/text_bg.png'
+import clinic from '../../assets/clinic_somya.jpg'
 
 const AboutClinic = () => {
     useEffect(() => {
@@ -26,7 +27,7 @@ const AboutClinic = () => {
     }, []);
 
     return (
-        <div className="relative overflow-hidden bg-white">
+        <div className="relative overflow-hidden bg-white py-20 border border-red-500">
             {/* Background Image */}
             <div
                 className="absolute inset-0 hidden lg:block"
@@ -39,25 +40,23 @@ const AboutClinic = () => {
             ></div>
 
             {/* Main Content */}
-            <div className="relative flex flex-col lg:flex-row justify-between items-start p-6 md:p-12 gap-12 lg:gap-20 max-w-7xl mx-auto mt-[2.25rem] mb-[2.5rem] z-10">
+            <div className="relative flex flex-col lg:flex-row justify-between items-start p-4 md:p-0 gap-12 lg:gap-20 max-w-7xl mx-auto mt-[2.25rem] mb-[2.5rem] z-10">
 
                 {/* Left Side: Text Content */}
-                <div className="flex-1 z-10 p-6 md:p-8  rounded-lg  transition-transform transform hover:scale-105" data-aos="fade-right">
+                <div className="flex-1 z-10 p-6 md:p-8 rounded-lg transition-transform transform hover:scale-105" data-aos="fade-right">
                     <div className='flex flex-col gap-2'>
-                        <div  className="relative overflow-hidden bg-white">
-                        <h2 className="text-indigo-600 text-2xl font-semibold">
-                            About Dr. Somya Singh
-                        </h2>
+                        <div className="relative overflow-hidden ">
+                            <h2 className="bg-transparent text-[1.5rem]">About Astitva Clinic For Women Health Care</h2>
                         </div>
                     
-                        <h1 className="font-bold text-gray-800 text-3xl mb-2">
-                            Women's Health Excellence Clinic
+                        <h1 className="font-bold text-gray-800">
+                            Best Obstetrician and  Gynecologist in Lucknow
                         </h1>
                     </div>
 
-                    <h3 className="text-lg font-medium text-gray-600 mt-2">
-                        Compassionate Care for Women
-                    </h3>
+                    {/* <h3 className="text-lg font-medium text-gray-600 mt-2">
+                        Clinic For Women Health Care
+                    </h3> */}
                     <p className="text-base text-gray-600 leading-relaxed text-justify mt-4">
                         Dr. Somya Singh is a dedicated gynecologist with a passion for providing comprehensive care tailored to women’s health. With years of experience, she believes in empowering women through knowledge and personalized treatment plans.
                     </p>
@@ -65,27 +64,31 @@ const AboutClinic = () => {
                         At our clinic, we prioritize your comfort and health. We offer a range of services from routine check-ups to specialized treatments, ensuring every woman receives the highest standard of care.
                     </p>
 
-                    {/* Clinic Hours and Address */}
-                    <div className="mt-6 text-gray-600">
-                        <div className="flex items-center mb-2">
-                            <FaClock className="text-indigo-600 mr-2" />
-                            <h4 className="font-semibold text-lg">Clinic Hours:</h4>
+                    {/* New Features Section */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-6">
+                        <div className="flex items-center">
+                            <FaCheckCircle className="text-[#3597c8] mr-2" />
+                            <p className="text-gray-600">Personalized care plans</p>
                         </div>
-                        <p>Monday - Saturday: 6 PM - 9 PM</p>
-                        <p>Sunday: Closed</p>
-                        
-                        <div className="flex items-center mt-4">
-                            <FaMapMarkerAlt className="text-indigo-600 mr-2" />
-                            <h4 className="font-semibold text-lg">Address:</h4>
+                        <div className="flex items-center">
+                            <FaCheckCircle className="text-[#3597c8] mr-2" />
+                            <p className="text-gray-600">Experienced medical staff</p>
                         </div>
-                        <p>14/25, Indira Nagar, Near Mahi Medical Store, Lucknow, Uttar Pradesh 226016</p>
+                        <div className="flex items-center">
+                            <FaCheckCircle className="text-[#3597c8] mr-2" />
+                            <p className="text-gray-600">State-of-the-art equipment</p>
+                        </div>
+                        <div className="flex items-center">
+                            <FaCheckCircle className="text-[#3597c8] mr-2" />
+                            <p className="text-gray-600">Comfortable clinic environment</p>
+                        </div>
                     </div>
 
                     {/* Call to Action Button */}
                     <div className="mt-6">
-                        <Link to={"/about"}>
+                        <Link to={"/contact"}>
                             <button
-                                className="relative flex items-center px-6 py-3 overflow-hidden font-medium transition-all bg-indigo-500 rounded-md group"
+                                className="relative flex items-center px-6 py-3 overflow-hidden font-medium transition-all bg-[#3597c8] rounded-md group"
                             >
                                 <span
                                     className="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-indigo-700 rounded group-hover:-mr-4 group-hover:-mt-4"
@@ -106,7 +109,7 @@ const AboutClinic = () => {
                                 ></span>
                                 <span
                                     className="relative w-full text-left text-white transition-colors duration-200 ease-in-out group-hover:text-white"
-                                >View More</span>
+                                >Book Appoitment Now</span>
                             </button>
                         </Link>
                     </div>
@@ -116,21 +119,10 @@ const AboutClinic = () => {
                 <div className="flex-1 z-10 flex flex-col items-center lg:items-start relative" data-aos="fade-left">
                     <div className="relative group">
                         <img
-                            src={image1}
+                            src={clinic}
                             alt="Dr. Somya Singh"
-                            className="w-full lg:w-[500px] h-auto rounded-lg shadow-lg transition-transform transform hover:scale-105"
+                            className="w-full lg:w-[600px] max-h-[540px] object-cover rounded-lg shadow-lg transition-transform transform hover:scale-105"
                         />
-                        {/* <div className="absolute bottom-0 bg-white bg-opacity-90 rounded-lg shadow-lg p-4 flex flex-col items-start">
-                            <div className='flex items-center justify-center gap-4'>
-                                <FaUserMd className="text-indigo-600 lg:text-[5rem] text-[4rem] transition-transform duration-500 transform group-hover:rotate-12" />
-                                <div className="flex flex-col items-start">
-                                    <p className="md:text-2xl sm:text-xl text-lg font-semibold text-gray-900">Dr. Somya Singh</p>
-                                    <p className="mt-2 text-lg text-gray-600">
-                                        Gynecologist & Women's Health Specialist
-                                    </p>
-                                </div>
-                            </div>
-                        </div> */}
                     </div>
                 </div>
             </div>

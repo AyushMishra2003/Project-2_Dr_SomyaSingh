@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Slider from 'react-slick';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import s1 from '../../assets/slider/s1.jpeg';
-import s2 from '../../assets/slider/s2.jpeg';
-import slider1 from '../../assets/slider-rename/appointment-1.png';
-import slider2 from '../../assets/slider-rename/diets.png';
-import slider3 from '../../assets/slider-rename/doctor-1.png';
-import pattern from '../../assets/whywechoose.png';
-import { Link } from 'react-router-dom';
+import { FaArrowLeft, FaArrowRight, FaPills, FaHeartbeat, FaUserMd, FaMicroscope, FaAppleAlt } from 'react-icons/fa';
+import s1 from '../../assets/slider/s4.jpeg'; // Replace with your image
+import s2 from '../../assets/slider/s5.jpeg'; // Replace with your image
+import s3 from '../../assets/slider/s6.jpeg'; // Replace with your image
+import s4 from '../../assets/slider/s7.jpeg'; // Replace with your image
+import s10 from '../../assets/slider/slider10.jpg'; // Replace with your image
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const HomeSlider = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -27,60 +31,63 @@ const HomeSlider = () => {
     ],
   };
 
+  const services = [
+    { icon: <FaPills />, title: 'Birth Control' },
+    { icon: <FaMicroscope />, title: 'Pregnancy Testing' },
+    { icon: <FaHeartbeat />, title: 'Health Care' },
+    { icon: <FaUserMd />, title: 'Abortion Services' },
+    { icon: <FaUserMd />, title: 'Gynecology Services' },
+    { icon: <FaAppleAlt />, title: 'Family Planning' },
+  ];
+
   return (
-    <div className="relative w-full mx-auto h-fit">
-      <Slider {...settings} className="relative h-fit">
-        {[s1, s2].map((src, index) => (
+    <div className="relative w-full mx-auto border border-red-500 ">
+      {/* Slider Section */}
+      <Slider {...settings} className="relative h-[400px] md:h-[570px]">
+        {[s10,s3,s4].map((src, index) => (
           <div className="relative" key={index}>
             <img
               src={src}
               alt={`Slide ${index + 1}`}
-              className="w-full h-[100px] sm:h-[250px] md:h-[300px] lg:h-[370px] xl:h-[400px] object-cover"
+              className="w-full h-full object-cover rounded-[30px] transition-transform duration-500 transform hover:scale-110 hover:opacity-90"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-50 flex items-center justify-center">
-              <h2 className="text-white font-bold text-2xl">Slide {index + 1} Caption</h2>
-            </div>
           </div>
         ))}
       </Slider>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-2 sm:items-center sm:justify-center gap-2 relative z-10 mt-[-8px] lg:mt-[-50px] px-4 lg:px-16 justify-items-center">
-        {[{ title: 'Book Appointment', desc: 'Easily schedule your visit online and manage your health.', img: slider1 },
-          { title: 'Explore Our Cases', desc: 'Discover how we help our patients with personalized treatments.', img: slider2 },
-          { title: 'Contact Us', desc: 'Get in touch with our team for immediate assistance.', img: slider3 }
-        ].map((card, index) => (
-          <Link to={index === 2 ? "/contact" : "#"} key={index}>
-            <div className="bg-white relative shadow-lg rounded-md p-4 text-center flex-1 w-full max-w-[370px] lg:max-w-[280px] xl:max-w-[400px] hover:shadow-xl transition-shadow duration-300">
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `url(${pattern})`,
-                  backgroundSize: 'contain',
-                  backgroundPosition: 'center',
-                  opacity: 0.6,
-                  zIndex: 0,
-                }}
-              ></div>
-              <div className="relative z-10 flex items-start justify-center w-full gap-3 lg:gap-4">
-                <img src={card.img} alt={card.title} className="w-16 h-16" />
-                <div className="flex flex-col items-start">
-                  <h3 className="font-bold text-lg lg:text-xl mb-1 lg:mb-2 text-left leading-snug">{card.title}</h3>
-                  <p className="text-gray-600 text-sm lg:text-base text-left leading-relaxed">{card.desc}</p>
-                </div>
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+      {/* Services Section */}
+      {/* <div className="py-10 bg-gradient-to-b from-white to-[#e0f7fa] overflow-hidden relative">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-10 pt-10">
+            {services.map((service, index) => (
+              <ServiceItem key={index} icon={service.icon} title={service.title} />
+            ))}
+          </div>
+        </div>
+      </div> */}
     </div>
   );
 };
 
+// Reusable Service Item Component
+const ServiceItem = ({ icon, title }) => (
+  <div
+    className="flex flex-col items-center text-center space-y-4 p-6 rounded-full border border-[#1E3A8A] bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 transform"
+    data-aos="zoom-in"
+  >
+    <div className="icon bg-[#1E3A8A] text-white rounded-full p-4 mb-4 flex items-center justify-center text-4xl">
+      {icon}
+    </div>
+    <h3 className="text-lg font-semibold text-[#1E3A8A]">{title}</h3>
+  </div>
+);
+
+// Arrows for Slider
 const SampleNextArrow = (props) => {
   const { onClick } = props;
   return (
     <div
-      className="absolute top-1/2 right-6 transform -translate-y-1/2 bg-[#1f708e] text-white rounded-full p-3 cursor-pointer hover:bg-[#14576c] transition duration-300 z-10"
+      className="absolute top-1/2 right-6 transform -translate-y-1/2 bg-[#3597c8] text-white rounded-full p-3 shadow-lg cursor-pointer hover:bg-[#0b3d5b] transition duration-300 z-10"
       onClick={onClick}
     >
       <FaArrowRight size={20} />
@@ -92,7 +99,7 @@ const SamplePrevArrow = (props) => {
   const { onClick } = props;
   return (
     <div
-      className="absolute top-1/2 left-6 transform -translate-y-1/2 bg-[#1f708e] text-white rounded-full p-3 cursor-pointer hover:bg-[#14576c] transition duration-300 z-10"
+      className="absolute top-1/2 left-6 transform -translate-y-1/2 bg-[#3597c8] text-white rounded-full p-3 shadow-lg cursor-pointer hover:bg-[#0b3d5b] transition duration-300 z-10"
       onClick={onClick}
     >
       <FaArrowLeft size={20} />
