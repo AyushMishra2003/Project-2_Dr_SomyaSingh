@@ -41,21 +41,23 @@ const HomeSlider = () => {
   ];
 
   return (
-    <div className="relative w-full mx-auto border border-red-500 ">
+    <div className="relative w-full mx-auto">
       {/* Slider Section */}
-      <Slider {...settings} className="relative h-[400px] md:h-[570px]">
-        {[s10,s3,s4].map((src, index) => (
+      <Slider {...settings} className="relative h-[20vh] sm:h-[40vh] md:h-[60vh] lg:h-[65vh] xl:h-[80vh]">
+        {[s10, s3, s4].map((src, index) => (
           <div className="relative" key={index}>
             <img
               src={src}
               alt={`Slide ${index + 1}`}
-              className="w-full h-full object-cover rounded-[30px] transition-transform duration-500 transform hover:scale-110 hover:opacity-90"
+              className="w-full h-full object-cover transition-transform duration-500 transform  hover:opacity-90"
+              style={{ maxHeight: '100%' }} // Ensure image doesn't overflow
             />
           </div>
         ))}
       </Slider>
 
       {/* Services Section */}
+      {/* Uncomment if you want to include services */}
       {/* <div className="py-10 bg-gradient-to-b from-white to-[#e0f7fa] overflow-hidden relative">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-10 pt-10">

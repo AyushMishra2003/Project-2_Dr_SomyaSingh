@@ -636,48 +636,6 @@ const services = [
         ],
       },
       {
-        id: 12,
-        name: 'M.T.P / D & C',
-        link: 'mtpdnc',
-        icon: <FaArrowAltCircleRight />, // Icon provided
-        images: [img6], // Array of relevant images
-        description: `The M.T.P / D & C services focus on safe and professional options for medical termination of pregnancy (M.T.P) and Dilation & Curettage (D & C) procedures. These services prioritize patient safety, comfort, and thorough care with guidance on reproductive health decisions.`,
-        types: [
-          {
-            title: 'Medical Termination of Pregnancy (M.T.P)',
-            details: `Medical Termination of Pregnancy (M.T.P) is a legal and safe option under medical guidance for terminating an early pregnancy. This procedure involves either medication or surgical methods, depending on the individual’s needs, health conditions, and the pregnancy stage. M.T.P services are provided with sensitivity, confidentiality, and in adherence to healthcare regulations.`,
-          },
-          {
-            title: 'Dilation & Curettage (D & C)',
-            details: `Dilation & Curettage (D & C) is a procedure performed to clear the uterine lining in cases such as incomplete miscarriage, abnormal bleeding, or other medical conditions. This procedure is conducted by a trained healthcare provider in a controlled environment, ensuring safety, comfort, and proper follow-up care.`,
-          },
-        ],
-        treatment: {
-          overview: `Both M.T.P and D & C procedures are carried out with professional care, ensuring patient safety, emotional support, and medical compliance. These procedures are options for individuals needing medical termination of pregnancy or uterine treatment, often under local or general anesthesia and with dedicated aftercare to aid recovery.`,
-          details: [
-            {
-              title: 'Counseling and Pre-procedure Preparation',
-              description: `Before M.T.P or D & C procedures, patients receive thorough counseling, addressing health concerns, and receiving information about the steps, potential outcomes, and care instructions. Healthcare providers conduct an assessment to ensure the procedure aligns with the patient’s health and personal circumstances.`,
-            },
-            {
-              title: 'Procedure and Follow-up Care',
-              description: `M.T.P may involve prescribed medications or a minor surgical procedure, depending on the case. D & C, on the other hand, involves dilating the cervix and gently clearing the uterine lining. Aftercare includes monitoring and guidance on managing any post-procedure symptoms and a follow-up appointment to ensure full recovery.`,
-            },
-          ],
-        },
-        causes: [
-          'Unplanned pregnancy where M.T.P is legally chosen under medical supervision.',
-          'Incomplete miscarriage requiring D & C to remove any remaining tissue for safe recovery.',
-          'Abnormal uterine bleeding or polyps that may necessitate a D & C for diagnosis or treatment.',
-        ],
-        symptoms: [
-          'Indications for M.T.P or D & C may include:',
-          'Early pregnancy that the individual chooses to terminate.',
-          'Incomplete miscarriage symptoms, such as prolonged bleeding and cramping.',
-          'Abnormal or heavy uterine bleeding unresponsive to medication, often warranting D & C.',
-        ],
-      },
-      {
         id: 13,
         name: 'Minimally Invasive Gynecology',
         link: 'minimallyinvasivegynecology',
@@ -751,6 +709,15 @@ const ServiceDetails = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const lastSegment = location.pathname.split('/').pop();
+    const foundService = services.find(service => service?.link === lastSegment);
+    if (foundService) {
+      setActiveService(foundService);
+    }
+  }, [location]);
+
   // Slick carousel settings
   const settings = {
     dots: true,
@@ -766,25 +733,16 @@ const ServiceDetails = () => {
   console.log(activeService?.images[0]);
   let pathSegments = window.location.pathname.split('/');
 
+  
 
-  useEffect(() => {
-    
-    const lastSegment = pathSegments[pathSegments.length - 1];
 
-    console.log(lastSegment);
-    
-
-    const foundService = services.find(service => service?.link === lastSegment);
-    if (foundService) {
-      setActiveService(foundService);
-    }
-  }, [location.pathname]);
+ 
   
 
   return (
 <section className='overflow-x-hidden'>
   <Helmet>
-    <title>Treatment Details - Dr. Manas Aggarwal</title>
+    <title>Treatment Details - Dr. Somya Singh</title>
     <meta name="description" content="Discover comprehensive treatment details offered by Dr. Manas Aggarwal, a renowned gastroenterology surgeon in Lucknow, focusing on patient-centered care and advanced techniques." />
     <meta name="keywords" content="Treatment Details, Dr. Manas Aggarwal, Gastroenterology, Patient Care, Surgical Techniques, Lucknow" />
   </Helmet>
@@ -801,7 +759,12 @@ const ServiceDetails = () => {
             key={service.id}
             className={`flex items-center p-3 cursor-pointer rounded-lg transition duration-300 
               ${activeService.id === service.id ? 'bg-[#3597c8] text-white' : 'bg-white text-gray-800 hover:bg-[#46bbf5] hover:text-white ease-in-out duration-500'}`}
-            onClick={() => setActiveService(service)}
+              onClick={() => {
+                setActiveService(service);
+                window.scrollTo(0, 0);
+              }}
+              
+     
           >
             <span className="mr-2 text-xl">{service.icon}</span>
             <span>{service.name}</span>
@@ -840,7 +803,7 @@ const ServiceDetails = () => {
         <h2 className="text-3xl font-bold mb-6">{activeService.name}</h2>
 
         {/* Overview Section */}
-        <p className="mb-6 text-lg text-gray-700 text-justify">
+        <p className="mb-6 text-lg text-gray-700 text-justify md:w-full w-[90%]">
           {activeService.description}
         </p>
 

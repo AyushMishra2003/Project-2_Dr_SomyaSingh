@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { FaMapMarkerAlt, FaEnvelope, FaPhone } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { submitInquiry } from "../../redux/Slice/Parent.slice";
 
 const ContactForm = () => {
   // State for form inputs
   const [formData, setFormData] = useState({
-    name: "",
+    fullName: "",
     email: "",
-    phone: "",
+    phoneNumber: "",
     message: ""
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const dispatch=useDispatch()
 
   // Handle change for input fields
   const handleChange = (e) => {
@@ -21,15 +25,19 @@ const ContactForm = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault(); // Prevent the default form submission behavior
-    console.log("Form submitted:", formData); // Handle the form data (e.g., send it to an API)
+     setIsLoading(true)
+    const response=await dispatch(submitInquiry(formData))
+
+    console.log(response);
+    setIsLoading(false)
 
     // Reset the form
     setFormData({
-      name: "",
+      fullName: "",
       email: "",
-      phone: "",
+      phoneNumber: "",
       message: ""
     });
   };
@@ -86,8 +94,8 @@ const ContactForm = () => {
             <div className="relative">
               <input 
                 type="text" 
-                name="name" 
-                value={formData.name}
+                name="fullName" 
+                value={formData.fullName}
                 onChange={handleChange}
                 className="w-full bg-transparent border-b-2 border-white py-2 outline-none focus:border-teal-300 placeholder-white" 
                 placeholder="Name" 
@@ -108,8 +116,8 @@ const ContactForm = () => {
             <div className="relative">
               <input 
                 type="tel" 
-                name="phone" 
-                value={formData.phone}
+                name="phoneNumber" 
+                value={formData.phoneNumber}
                 onChange={handleChange}
                 className="w-full bg-transparent border-b-2 border-white py-2 outline-none focus:border-teal-300 placeholder-white" 
                 placeholder="Phone" 
@@ -127,10 +135,27 @@ const ContactForm = () => {
                 required
               ></textarea>
             </div>
+            <button
+                    type="submit"
+                   className="py-2 px-4 bg-white text-[#3597c8] font-semibold rounded-full hover:bg-teal-300 transition duration-300"
+                    disabled={isLoading}
+                >
+                    {isLoading ? (
+                        <span className="flex justify-center items-center">
+                            <svg
+                                className="animate-spin h-5 w-5 mr-3 border-2 border-t-white border-[#1A466D] rounded-full"
+                                viewBox="0 0 24 24"
+                            ></svg>
+                            Sending...
+                        </span>
+                    ) : (
+                        "Send Message"
+                    )}
+                </button>
             
-            <button type="submit" className="py-2 px-4 bg-white text-[#3597c8] font-semibold rounded-full hover:bg-teal-300 transition duration-300">
+            {/* <button type="submit" className="py-2 px-4 bg-white text-[#3597c8] font-semibold rounded-full hover:bg-teal-300 transition duration-300">
               Send
-            </button>
+            </button> */}
           </form>
         </div>
       </div>

@@ -15,6 +15,9 @@ import AboutClinic from './pages/About/AboutClinic'
 import ContactForm from './pages/Cases/ContactForm'
 import Testimonials from './pages/Cases/Testonomial'
 import ServiceDetails from './pages/Service/ServiceDetail'
+import SocialMediaIcons from './component/SocialMedia'
+import ScrollToTopButton from './component/ScrollToTop'
+import WhatsAppIcon from './component/WhastappIcon'
 
 
 const App = () => {
@@ -34,6 +37,9 @@ const App = () => {
             <Route  path='/demo1' element={<Testimonials/>}/>
             <Route  path='/treatment/:name' element={<ServiceDetails/>}/>
          </Routes>
+         <WhatsAppIcon/>
+         <ScrollToTopButton/>
+         <SocialMediaIcons/>
 
       <Footer/>
       <BottomFooter/>   

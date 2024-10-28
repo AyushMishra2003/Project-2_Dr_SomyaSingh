@@ -5,21 +5,21 @@ import equipment2 from "../../assets/New_Pattern/equiment2.png";
 
 const ServicePage = () => {
   return (
-    <div className='w-full flex flex-col items-center justify-center py-20 relative'>
-      {/* Equipment images with absolute positioning */}
-      <img 
-        src={equipment1} 
-        alt="Gynecological Equipment 1" 
-        className="absolute left-[2rem] top-[0rem] w-[20rem] h-[20rem] animate-float rotate-x-60" // Added rotate-x-60 class
-        style={{ transform: 'translate(-50%, 0) rotateX(60deg)' }} // Center horizontally and rotate
-      />
+    <div className='w-full flex flex-col items-center justify-center lg:py-20 relative'>
+      {/* Container for equipment images */}
+      <div className="flex justify-between w-full max-w-7xl px-4">
+        <img 
+          src={equipment1} 
+          alt="Gynecological Equipment 1" 
+          className="w-full sm:w-1/2 md:w-[25rem] h-auto animate-float" // Increased width
+        />
 
-      <img 
-        src={equipment2} 
-        alt="Gynecological Equipment 2" 
-        className="absolute right-[2rem] top-[0rem] w-[20rem] h-[20rem] animate-float" // Adjust width and height as needed
-        style={{ transform: 'translate(50%, 0)' }} // Center horizontally
-      />
+        <img 
+          src={equipment2} 
+          alt="Gynecological Equipment 2" 
+          className="w-full sm:w-1/2 md:w-[25rem] h-auto animate-float" // Increased width
+        />
+      </div>
       
       <div className='max-w-7xl flex flex-col gap-6'>
         {/* Left Side: Text Content */}
@@ -46,4 +46,4 @@ const ServicePage = () => {
   );
 };
 
-export default ServicePage;
+export default ServicePage; 

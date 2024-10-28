@@ -22,7 +22,7 @@ const Header = () => {
 
 
   const [activeSubDropDown, setActiveSubDropDown] = useState(null);
-  const [activeAbout,setActiveAbout]=useState(null)
+  const [activeAbout,setActiveAbout]=useState(false)
 // const [activeDropdown, setActiveDropdown] = useState(false); // Active main treatment dropdown for desktop
 // const [activeSubDropdown, setActiveSubDropdown] = useState(null); // Active sub-treatment dropdown
 
@@ -224,9 +224,8 @@ const [toogleTreatment,setToogleTreatment]=useState(false)
   // }, [isOpen]);
 
 
-  console.log(activeSubDropDown);
 
-  console.log(activeDropdown);
+  
 
   useEffect(() => {
     if (isOpen) {
@@ -238,6 +237,10 @@ const [toogleTreatment,setToogleTreatment]=useState(false)
       document.body.style.overflow = 'auto';   // Cleanup on component unmount
     };
   }, [isOpen]);
+
+
+  console.log(activeAbout);
+  
   
   
 
@@ -260,7 +263,7 @@ const [toogleTreatment,setToogleTreatment]=useState(false)
 
             <div
   className="relative"
-  onMouseEnter={() => setActiveAbout('about')}
+  onMouseEnter={() => setActiveAbout(!activeAbout)}
   onMouseLeave={() => {
     setTimeout(() => {
       if (!activeDropdown) setActiveAbout(null);
@@ -274,7 +277,7 @@ const [toogleTreatment,setToogleTreatment]=useState(false)
   </button>
 
   {/* Dropdown Menu */}
-  {activeAbout === 'about' && (
+  {activeAbout && (
     <div className="absolute left-0 bg-white shadow-lg text-[0.9rem] rounded-lg w-[18rem] py-2 z-50 border border-gray-300 transition-transform duration-300 ease-in-out transform-gpu">
     {aboutItems.map((treatment) => (
       <div
@@ -392,7 +395,7 @@ const [toogleTreatment,setToogleTreatment]=useState(false)
 </div>
 
   )}
-</div>
+            </div>
 
 
 
@@ -441,7 +444,7 @@ const [toogleTreatment,setToogleTreatment]=useState(false)
         )}
 
       
-<div
+        <div
   className={`${
     isOpen ? 'translate-x-0' : '-translate-x-full'
   } fixed left-0 top-0 h-full w-64 bg-white z-50 shadow-lg transition-transform duration-300 ease-in-out`}
@@ -457,9 +460,69 @@ const [toogleTreatment,setToogleTreatment]=useState(false)
     <NavLink to="/" className="block hover:text-teal-600" onClick={toggleMenu}>
       Home
     </NavLink>
-    <NavLink to="/about" className="block hover:text-teal-600" onClick={toggleMenu}>
-      About Us
-    </NavLink>
+    <div
+  className="relative"
+  onClick={()=> setActiveAbout(!activeAbout)}
+  onMouseEnter={() => setActiveAbout(!activeAbout)}
+  onMouseLeave={() => {
+    setTimeout(() => {
+      if (!activeDropdown) setActiveAbout(null);
+    }, 200); // Delay hiding the dropdown
+  }}
+>
+  <button
+    className={`flex items-center gap-1 transition-all duration-300 hover:text-primary ${activeAbout === 'about' ? 'text-primary' : ''}`}
+  >
+    About <IoMdArrowDropdown />
+  </button>
+
+  {/* Dropdown Menu */}
+  {activeAbout && (
+    <div className="absolute left-0 bg-white shadow-lg text-[0.9rem] rounded-lg w-[14rem] py-2 z-50 border border-gray-300 transition-transform duration-300 ease-in-out transform-gpu">
+    {aboutItems.map((treatment) => (
+      <div
+        key={treatment.name}
+        className="border-b relative"
+        onMouseEnter={() => setActiveSubDropdown(treatment.name)}
+        onMouseLeave={() => setActiveSubDropdown(null)}
+      >
+        <button
+          className="flex justify-between items-center w-full px-2 py-2 hover:bg-gray-100"
+          onClick={() => {
+            if (treatment.hasSubItems) {
+              setActiveSubDropdown(treatment.name); // Show sub-items if available
+            } else {
+              // Navigate to the treatment page directly if no sub-items
+              window.location.href = treatment.path; // Or use history.push if using react-router
+            }
+          }}
+        >
+          {treatment.name}
+          {treatment.hasSubItems && <IoMdArrowDropright />} {/* Only show icon if there are sub-items */}
+        </button>
+
+        {activeSubDropdown === treatment.name && treatment.hasSubItems && (
+          <div className="absolute left-full top-0 bg-white shadow-lg rounded-lg w-48 z-50">
+            {treatment.subItems.map((subItem, index) => (
+              <Link
+                key={subItem.name}
+                to={subItem.path}
+                className={`block px-4 py-2 hover:bg-gray-200 ${index !== treatment.subItems.length - 1 ? 'border-b border-gray-300' : ''}`}
+                onClick={() => {
+                  setActiveDropdown(null); // Close main dropdown on click
+                  setActiveSubDropdown(null); // Close sub-dropdown on click
+                }}
+              >
+                {subItem.name}
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+  )}
+           </div>
 
     <div>
   <button
@@ -527,7 +590,7 @@ const [toogleTreatment,setToogleTreatment]=useState(false)
       Contact Us
     </NavLink>
   </div>
-</div>
+        </div>
 
 
 

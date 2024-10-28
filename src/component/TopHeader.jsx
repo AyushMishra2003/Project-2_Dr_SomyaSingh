@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const TopHeader = () => {
   return (
     <div className="bg-[#3597c8] text-white py-2 lg:py-3 shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row md:justify-between items-center gap-2 md:gap-4 lg:gap-8 border border-red-500">
+      <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row md:justify-between items-center gap-2 md:gap-4 lg:gap-8 b">
 
         {/* Contact Info Section */}
         <div className="flex flex-col sm:flex-row items-center gap-4 lg:gap-6">

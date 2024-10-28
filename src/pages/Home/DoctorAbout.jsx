@@ -18,7 +18,7 @@ const DoctorAbout = () => {
   }, []);
 
   return (
-    <section className="bg-gray-100 py-40 relative">
+    <section className="bg-gray-100 py-20 relative">
       {/* Background Pattern */}
       <div
         className="absolute inset-0 hidden lg:block"
@@ -38,16 +38,16 @@ const DoctorAbout = () => {
           className="lg:w-1/2 mb-8 lg:mb-0"
           data-aos="fade-right" // AOS animation applied here
         >
-          <h2 className="text-4xl font-bold text-gray-800 mb-4 leading-tight">
+          <h2 className="lg:text-4xl text-2xl md:text-3xl font-bold text-gray-800 mb-4 leading-tight">
           Meet <span className="text-[#3597c8]">Dr. Somya Singh</span>, our best gynecologist dedicated to providing exceptional care.
         
           </h2>
-          <p className="text-gray-600 mb-6 text-lg text-justify leading-relaxed">
+          <p className="text-gray-600 mb-6 md:text-lg text-sm  text-justify leading-relaxed">
             Dr. Somya Singh is a highly qualified obstetrician and gynecologist with extensive experience in the field. 
             She served as an Associate Professor at the Mayo Institute of Medical Sciences, contributing to research and education 
             in obstetrics and gynecology. Her dedication to advancing medical knowledge has made her a respected leader in healthcare.
           </p>
-          <p className="text-gray-600 mb-6 text-lg text-justify leading-relaxed">
+          <p className="text-gray-600 mb-6 md:text-lg text-sm  text-justify leading-relaxed">
             Specialized in minimally invasive gynecology, preventive oncology, and fetal medicine, Dr. Singh holds qualifications from 
             prestigious institutions like the Royal College of Obstetrics and Gynecology in London, making her a trusted healthcare provider.
           </p>
